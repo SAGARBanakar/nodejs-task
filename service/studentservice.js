@@ -1,19 +1,9 @@
-let students = [];
+const fs = require("fs");
+const path = require("path");
+
+const filePath = path.join(__dirname, "../data/students.json");
 
 exports.getStudents = () => {
-  return students;
-};
-
-exports.addStudent = (student) => {
-  students.push(student);
-  return student;
-};
-
-exports.updateStudent = (id, student) => {
-  students[id] = student;
-  return student;
-};
-
-exports.deleteStudent = (id) => {
-  students.splice(id, 1);
+  const data = fs.readFileSync(filePath);
+  return JSON.parse(data);
 };
